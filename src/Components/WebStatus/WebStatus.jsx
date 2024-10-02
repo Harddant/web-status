@@ -3,11 +3,10 @@ import './WebStatus.css'
 
 export const WebStatus = () => {
     const [websites, setWebsites] = useState([
-        { url: 'https://nuefang.com/' },
-        { url: 'https://qualitybooksuk.com/'},
-        { url: 'https://neverjusthair.com/'},
-        { url: 'https://eyupben.org/'},
-        { url: 'https://neeeufang.com/'}  
+        { url: 'https://nuefang.com/', name: 'Nuefang'},
+        { url: 'https://qualitybooksuk.com/', name: 'Quality Books UK'},
+        { url: 'https://neverjusthair.com/', name: 'Never Just Hair'},
+        { url: 'https://eyupben.org/', name: 'EyupBen'}, 
     ]);
 
     const mins = 1;
@@ -23,9 +22,9 @@ export const WebStatus = () => {
                             mode: 'no-cors',
                           });
                         console.log(response);
-                        return { url: site.url, status: true};
+                        return { ...site, url: site.url, status: true};
                     } catch (error) {
-                      return { url: site.url, status: false}; 
+                      return { ...site, url: site.url, status: false}; 
                     }
                 })
             );
@@ -38,18 +37,22 @@ export const WebStatus = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const openWebsite = (link) => {
+        window.open(link, '_blank');
+    };
+
     return (
         <>
             <section className="hero">
                 <div className="container">
-                    <table>
+                    <table className="table">
                         <tr>
-                            <th>URL</th>
+                            <th>WEBSITES</th>
                             <th>STATUS</th>
                         </tr>
                         {websites && websites.map((site, index) => (
-                            <tr>
-                                <td>{site.url}</td>
+                            <tr className="table-row" onClick={() => openWebsite(site.url)}> 
+                                <td>{site.name}</td>
                                 <td>{site?.status ? "Up" : "Down"}</td>
                             </tr>
                         ))}
