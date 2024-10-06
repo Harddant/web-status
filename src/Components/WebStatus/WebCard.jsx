@@ -8,7 +8,11 @@ export const WebCard = ({website}) => {
             <div className="iframe-div">
                 <iframe frameborder="0" scrolling="no" src={website.url}/>
             </div>
-            <p className='status'>{}</p>
+            <p className="status">
+                Status: <span className={website.status ? 'up' : 'down'}>
+                    {website.status ? 'Up' : 'Down'}
+                </span>
+            </p>
         </div>
     );
 };
