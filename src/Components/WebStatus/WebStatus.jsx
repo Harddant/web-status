@@ -7,7 +7,7 @@ export const WebStatus = () => {
         { url: 'https://nuefang.com/', name: 'Nuefang'},
         { url: 'https://qualitybooksuk.com/', name: 'Quality Books UK'},
         { url: 'https://neverjusthair.com/', name: 'Never Just Hair'},
-        { url: 'https://eyupben.org/', name: 'EyupBen'}, 
+        { url: 'https://eyupben.org/', name: 'Ey Up Ben'}, 
     ]);
 
     const mins = 1;
@@ -26,6 +26,7 @@ export const WebStatus = () => {
                         return { ...site, url: site.url, status: true};
                     } catch (error) {
                       return { ...site, url: site.url, status: false}; 
+                      console.log();
                     }
                 })
             );
