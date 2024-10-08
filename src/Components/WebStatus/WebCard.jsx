@@ -1,4 +1,5 @@
-import './WebStatus.css' 
+import './WebStatus.css';
+import React from 'react';
 
 export const WebCard = ({website}) => {
 
@@ -6,14 +7,22 @@ export const WebCard = ({website}) => {
         <div className='card-container'>
             <p className='webname'>{website.name}</p>
             <div className="iframe-div">
-                <iframe frameborder="0" scrolling="no" src={website.url}/>
+                {website.status ? (
+                    <iframe frameBorder="0" scrolling="no" src={website.url} title={website.name}/>
+                ) : (
+                    <p>Website is currently down</p>
+                )}
             </div>
             <p className="status">
                 Status: <span className={website.status ? 'up' : 'down'}>
                     {website.status ? 'Up' : 'Down'}
                 </span>
             </p>
+            <p className="uptime">
+                Uptime: <span className={website.status ? 'up' : 'down'}>
+                    {website.status ? website.uptime : '---' }
+                </span>
+            </p>
         </div>
     );
 };
-

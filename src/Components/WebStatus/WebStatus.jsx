@@ -16,23 +16,18 @@ export const WebStatus = () => {
         const checkWebsiteStatus = async () => {
             const updatedWebsites = await Promise.all(
                 websites.map(async (site) => {
-                    console.log()
                     try {
-                        const response = await fetch(site.url, {
-                            method: 'HEAD',
-                            mode: 'no-cors',
-                          });
-                        console.log(response);
-                        return { ...site, url: site.url, status: true};
+                        const response = await fetch(site.url + 'api/health', {
+                            method: 'GET',
+                          }).then(response => response.json());
+                        return { ...site, url: site.url, status: true, uptime: response.uptime};
                     } catch (error) {
                       return { ...site, url: site.url, status: false}; 
-                      console.log();
                     }
                 })
             );
             setWebsites(updatedWebsites);
         };
-
         const interval = setInterval(checkWebsiteStatus, mins*60*1000);
         checkWebsiteStatus();
 
@@ -46,7 +41,7 @@ export const WebStatus = () => {
     return (
         <>
             <section className="hero">
-                <h1 className="title">Website Health Checker</h1>
+                <h1 className="title">Status Checker</h1>
                 <div className="grid-container">
                     {websites.map((site, index) => (
                         <WebCard website={site} />
