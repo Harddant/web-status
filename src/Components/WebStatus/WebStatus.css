@@ -34,7 +34,7 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(45vw, 1fr));
     gap: 1.5rem;
     padding: 1rem;
     justify-content: center;
@@ -52,8 +52,14 @@
     border-radius: 2rem;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.541);
     height: 500px;
-    width: 32vw;
+    width: 100%;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.card-container:hover {
+    transform: scale(1.05);
 }
 
 iframe {
@@ -86,7 +92,6 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
 }
 
 .status span {
@@ -107,11 +112,11 @@ iframe {
 }
 
 .uptime {
+    font-size: 2rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
-    
 }
 
 .uptime .up {
@@ -142,3 +147,18 @@ iframe {
         overflow: hidden;
     }
   }
+
+@media (max-width: 1080px) {
+    .title {
+        font-size: 80px;
+    }
+
+    .status {
+        font-size: 1.5rem;
+    }
+
+    .uptime {
+        font-size: 1.5rem;
+    }
+}
+

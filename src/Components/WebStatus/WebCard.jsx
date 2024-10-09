@@ -3,8 +3,12 @@ import React from 'react';
 
 export const WebCard = ({website}) => {
 
+    const visitSite = (url) => {
+        window.open(url, '_blank').focus();
+    }
+    
     return (
-        <div className='card-container'>
+        <div onClick={() => visitSite(website.url)} className='card-container'>
             <p className='webname'>{website.name}</p>
             <div className="iframe-div">
                 {website.status ? (
